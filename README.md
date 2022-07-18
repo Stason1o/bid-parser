@@ -10,3 +10,8 @@ Log the bid id(id), timestamp(ts), queue “name”( ty), and payload (decoded f
 Event-based reading from the stream
 Spawn a thread for each queue message
 Use logging library to log output to console
+
+
+What's implemented?
+Event reading from file, using java Watch API, Two threads, each is reading its own queue (AQ, ZU types). 
+FileUpdateRunner is used for updating bids.json once a minute, so it will trigger event of MODIFY and will process file, filtering and sending bids to appropriate queues
