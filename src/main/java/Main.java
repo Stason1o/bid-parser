@@ -12,10 +12,11 @@ import parser.util.PropertyReader;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import static parser.entity.BidType.AQ;
 import static parser.entity.BidType.ZU;
@@ -30,8 +31,8 @@ public class Main {
 
         final Path dir = Paths.get(Paths.get(path).toFile().getParent());
 
-        final Queue<Bid> aqBidQueue = new LinkedList<>();
-        final Queue<Bid> zuBidQueue = new LinkedList<>();
+        final BlockingQueue<Bid> aqBidQueue = new LinkedBlockingQueue<>();
+        final BlockingQueue<Bid> zuBidQueue = new LinkedBlockingQueue<>();
 
         final QueueConsumer aqBidsConsumer = new QueueConsumer("AQ_THREAD", aqBidQueue);
         final QueueConsumer zuBidsConsumer = new QueueConsumer("ZU_THREAD", zuBidQueue);
